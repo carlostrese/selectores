@@ -1,1 +1,50 @@
-<p>selectores-page works!</p>
+<h1 class="mt-3">Selectores anidados</h1>
+<hr>
+<form action="" [formGroup]="myForm">
+
+  <!-- region -->
+  <div class="row mb-3">
+    <div class="col">
+      <label for="form-label">Continente:</label>
+      <select formControlName="region" class="form-control">
+        <option value="">--Seleccione contienente--</option>
+        <option  *ngFor="let region of regions" [value]="region">
+          {{region}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <!-- cuntries -->
+  <div class="row mb-3" *ngIf="countriesByRegion.length >0">
+    <div class="col">
+      <label for="form-label">País:</label>
+      <select formControlName="country" class="form-control">
+        <option value="">--Seleccione Pais--</option>
+        <option  *ngFor="let countries of countriesByRegion" [value]="countries.cca3">{{countries.name}}</option>
+      </select>
+    </div>
+  </div>
+
+
+
+   <!-- borders -->
+   <div class="row mb-3" >
+    <div class="col">
+      <label for="form-label">Fronteras:</label>
+      <select formControlName="border" class="form-control">
+        <option value="">--Seleccione la frontera--</option>
+        <!-- <option  *ngFor="let countries of countriesByRegion" [value]="countries.cca3">{{countries.name}}</option> -->
+      </select>
+    </div>
+  </div>
+
+
+</form>
+
+
+<h3>Formulario</h3>
+<code>
+  {{myForm.value | json}}
+</code>
+<p>is form valid: {{myForm.valid}}</p>
